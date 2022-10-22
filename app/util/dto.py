@@ -25,6 +25,7 @@ class RegisterDto:
     # path='/' -> endpoint: /{set value in add_resource()}
     register_request = register_api.model('register_request', {
         "username": fields.String(required=True, description="please set your username", example="Doe"),
+        "email": fields.String(requried=True, description="please enter your email address", example="doe@demo.demo"),
         "password": fields.String(required=True, description="please set your password", example="Doe!123#")
     })
     register_response = register_api.model('register_response', {
@@ -35,8 +36,8 @@ class RegisterDto:
 class UserDto:
     user_api = Namespace('user', description="This is a desc. of user", path='/')
     user_put_request = user_api.model('user_request', {
-        "username": fields.String(required=True, description="Please set your username", example="Doe"),
-        "password": fields.String(required=True, description="Please set your password", example="Doe!123#")
+        "username": fields.String(required=False, description="name you want to change", example="Doe"),
+        "email": fields.String(required=False, description="enter the new email", example="demo@demo.demo")
     })
     user_get_response = user_api.model('user_response', {
         "id": fields.Integer(),
