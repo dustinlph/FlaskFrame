@@ -10,30 +10,23 @@ from flask_jwt_extended import create_access_token, create_refresh_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
-auth_api = Namespace('auth', description="This is a description of authentication")
+from app.util.dto import AuthDto
 
-base_output_payload = auth_api.model('Basic output', {
-    'status': fields.String(required=True, default=0),
-    'message': fields.String(required=True, default="Response sample")
-})
-
-user_login_input_payload = auth_api.model('Register', {
-    'username': fields.String(required=True, example="test"),
-    'password': fields.String(required=True, example="test")
-})
-
-user_login_output_payload = auth_api.clone('Output of register', base_output_payload)
+auth_api = AuthDto.auth_api
+_auth_request = AuthDto.auth_request
+_auth_response = AuthDto.auth_response
 
 
 class Login(Resource):
-    @auth_api.expect(user_login_input_payload)
+    @auth_api.marshal_with(_auth_response, code=200, description="OK")
+    @auth_api.expect(_auth_request)
     def post(self):
         data = auth_api.payload
         username = data["username"]
         password = data["password"]
 
         if username != "test" or password != "test":
-            return {"msg": "Bad username or password"}, 401
+            return {"msg": "Bad username or password"}, 417
 
         access_token = create_access_token(identity=username)
         refresh_token = create_refresh_token(identity=username)

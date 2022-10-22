@@ -9,6 +9,8 @@ import os
 from datetime import timedelta
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+api_version = '0.0.2'
+
 
 class Config():
 	SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')

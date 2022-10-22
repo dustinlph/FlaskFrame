@@ -31,6 +31,8 @@
     * pip install Flask-Migrate==2.7.0
       * ImportError: cannot import name 'MigrateCommand' from 'flask_migrate' (C:\Users\Dustin\git\FlaskFrame\venv\lib\site-packages\flask_migrate\__init__.py)
 
+---
+
 <h3>V0.3.0</h3>
 
 * Note:
@@ -50,3 +52,12 @@
         * Fixed:
           * downgrade: werkzeug==2.1.2
           * Ref. https://blog.51cto.com/u_15830339/5758564
+
+---
+
+<h3>V0.3.1</h3>
+
+* Note:
+  * Refactor API
+    * Move api settings into resource/
+  * Add util/dto
