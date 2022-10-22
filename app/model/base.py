@@ -26,3 +26,7 @@ class Base(db.Model):
 
 	def update(self):
 		db.session.commit()
+
+	@staticmethod
+	def set_updated_at():
+		return datetime.utcnow().replace(microsecond=0)

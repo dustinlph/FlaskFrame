@@ -120,3 +120,12 @@
       * https://ithelp.ithome.com.tw/articles/10270981?sc=iThomeR
     * Flask_Mail:
       * https://hackmd.io/@shaoeChen/BytvGKs4M?type=view
+
+---
+
+<h3>V0.4.1</h3>
+
+* Note:
+  * Add model: Data
+  * Model: Base add 1 function.
+    * set_updated_at
