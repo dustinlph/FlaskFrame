@@ -6,6 +6,7 @@
 @Created on: 2022/10/22 16:47:08
 """
 from sqlalchemy.sql import func
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db
 
@@ -24,3 +25,9 @@ class Users(db.Model):
 		user = {u.name: getattr(self, u.name) for u in self.__table__.columns}
 		user['created_at'] = user['created_at'].isoformat()
 		return user
+
+	def set_password(self, password):
+		self.password_hash = generate_password_hash(password)
+
+	def check_password(self, password):
+		return check_password_hash(self.password_hash, password)
