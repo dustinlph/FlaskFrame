@@ -61,13 +61,9 @@
   * Refactor API
     * Move api settings into resource/
   * Add util/dto
-
----
-
-<h3>V0.3.2</h3>
-
-* Note:
   * Add environment in config.py
   * Setting env. by environment variable
   * Ref.
     * https://chinese.freecodecamp.org/news/structuring-a-flask-restplus-web-service-for-production-builds/
+
+---
