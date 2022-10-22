@@ -11,6 +11,7 @@ from flask import Blueprint
 from .auth import Login, Refresh
 from .register import Register
 from .user import User
+from .users import UserListInfo
 from app.util.dto import AuthDto
 from app.util.dto import RegisterDto
 from app.util.dto import UserDto
@@ -40,4 +41,5 @@ api.add_namespace(RegisterDto.register_api)
 RegisterDto.register_api.add_resource(Register, '/register')
 
 api.add_namespace(UserDto.user_api)
-UserDto.user_api.add_resource(User, '/user/<int:id>')
+UserDto.user_api.add_resource(User, '/user/<int:user_id>')
+UserDto.user_api.add_resource(UserListInfo, '/users')

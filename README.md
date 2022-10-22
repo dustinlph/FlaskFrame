@@ -73,7 +73,33 @@
 * Note:
   * API:
     * /user/register
-    * /user/<int: id> (GET, PUT, DELETE) 
+    * /user/<int: user_id> (GET, PUT, DELETE) 
   * Users model add func
     * Set password
     * Check password
+
+---
+
+<h3>V0.3.3</h3>
+
+* Note:
+  * Refactor DB
+  * UsersModel adds 3 functions.
+    * get_by_id
+    * get_by_username
+    * get_user_list
+  * Login error handle
+  * Login user verification before using /user/<int: id> API
+  * Add resource/users
+  * API:
+    * /users: Get user list
+    * Update /user/<int: user_id>
+      * PUT
+        * Need jwt verify, Only can update your account info
+        * Only can change name, email
+          * Known issue:
+            * Need to enter both name, email, otherwise return 500
+      * DELETE
+        * Need jwt verify, Only can delete your account info
+    * Update /user/register
+      * email required.

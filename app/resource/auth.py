@@ -5,12 +5,14 @@
 @Author: Dustin Lin
 @Created on: 2022/10/22 17:18:24
 """
-from flask_restx import Resource, Namespace, fields
+from flask import abort
+from flask_restx import Resource
 from flask_jwt_extended import create_access_token, create_refresh_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
 from app.util.dto import AuthDto
+from app.model.users import Users as UsersModel
 
 auth_api = AuthDto.auth_api
 _auth_request = AuthDto.auth_request
@@ -22,15 +24,14 @@ class Login(Resource):
     @auth_api.expect(_auth_request)
     def post(self):
         data = auth_api.payload
-        username = data["username"]
-        password = data["password"]
-
-        if username != "test" or password != "test":
-            return {"msg": "Bad username or password"}, 417
-
-        access_token = create_access_token(identity=username)
-        refresh_token = create_refresh_token(identity=username)
-        return {"access_token": access_token, "refresh_token": refresh_token}, 200
+        login_user = UsersModel.get_by_username(data["username"])
+        if login_user:
+            if login_user.check_password(data["password"]):
+                access_token = create_access_token(identity=data["username"])
+                refresh_token = create_refresh_token(identity=data["username"])
+                return {"access_token": access_token, "refresh_token": refresh_token}, 200
+            abort(401, "Password incorrect")
+        abort(400, "User not found")
 
 
 class Refresh(Resource):
