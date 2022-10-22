@@ -129,3 +129,23 @@
   * Add model: Data
   * Model: Base add 1 function.
     * set_updated_at
+
+---
+
+<h3>V0.4.2</h3>
+
+* Note:
+  * Add route/data
+  * API:
+    * /user/<int: user_id>/data (POST)
+    * /user/<int: user_id>/data/<int: data_id> (GET, PUT, DELETE)
+    * /user/<int: user_id>/alldata (GET)
+    * Update:
+      * /users -> /allusers
+  * DB:
+    * Update:
+      * Data
+        * title, info: unique==False
+        * Adds 2 functions.
+          * get_by_user_id_data_id
+          * get_data_list_by_user_id

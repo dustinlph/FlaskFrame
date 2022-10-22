@@ -14,8 +14,8 @@ from app.model.base import Base
 class Data(Base):
 	id = db.Column(db.Integer, primary_key=True)
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-	title = db.Column(db.String(64), unique=True)
-	Info = db.Column(db.String(256), unique=True)
+	title = db.Column(db.String(64), unique=False)
+	info = db.Column(db.String(256), unique=False)
 	created_at = db.Column(db.DateTime, server_default=func.now())
 	updated_at = db.Column(db.DateTime, server_default=func.now())
 
@@ -27,3 +27,16 @@ class Data(Base):
 		data['created_at'] = data['created_at'].isoformat()
 		data['updated_at'] = data['updated_at'].isoformat()
 		return data
+
+	@staticmethod
+	def get_by_user_id_data_id(user_id, data_id):
+		return db.session.query(Data).filter(
+			Data.id == data_id,
+			Data.user_id == user_id
+		).first()
+
+	@staticmethod
+	def get_data_list_by_user_id(user_id):
+		return db.session.query(Data).filter(
+			Data.user_id == user_id
+		).all()

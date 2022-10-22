@@ -12,9 +12,12 @@ from .auth import Login, Refresh
 from .register import Register
 from .user import User
 from .users import UserListInfo
+from .data import Data, CreateData
+from .datalist import DataListInfo
 from app.util.dto import AuthDto
 from app.util.dto import RegisterDto
 from app.util.dto import UserDto
+from app.util.dto import DataDto
 from app.config import api_version
 
 api_blueprint = Blueprint("open_api", __name__, url_prefix="/api")
@@ -42,4 +45,9 @@ RegisterDto.register_api.add_resource(Register, '/register')
 
 api.add_namespace(UserDto.user_api)
 UserDto.user_api.add_resource(User, '/user/<int:user_id>')
-UserDto.user_api.add_resource(UserListInfo, '/users')
+UserDto.user_api.add_resource(UserListInfo, '/allusers')
+
+api.add_namespace(DataDto.data_api)
+DataDto.data_api.add_resource(Data, '/user/<int:user_id>/data/<int:data_id>')
+DataDto.data_api.add_resource(CreateData, '/user/<int:user_id>/data')
+DataDto.data_api.add_resource(DataListInfo, '/user/<int:user_id>/alldata')
