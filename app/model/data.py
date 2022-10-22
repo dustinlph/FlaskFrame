@@ -13,6 +13,7 @@ from app.model.base import Base
 
 class Data(Base):
 	id = db.Column(db.Integer, primary_key=True)
+	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 	title = db.Column(db.String(64), unique=True)
 	Info = db.Column(db.String(256), unique=True)
 	created_at = db.Column(db.DateTime, server_default=func.now())

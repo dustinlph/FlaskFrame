@@ -6,6 +6,7 @@
 @Created on: 2022/10/22 16:47:08
 """
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db
@@ -18,6 +19,8 @@ class Users(Base):
 	username = db.Column(db.String(64), unique=True)
 	password_hash = db.Column(db.String(64), unique=True)
 	created_at = db.Column(db.DateTime, server_default=func.now())
+
+	data = relationship("Data")
 
 	def __repr__(self):
 		return f"""id: {self.id}, username: {self.username}"""
