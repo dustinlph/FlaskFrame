@@ -17,6 +17,7 @@ mail = Mail()
 
 from .config import config_options
 from app.model.users import Users as UsersModel
+from app.model.data import Data as DataModel
 from app.resource import api_blueprint
 
 
