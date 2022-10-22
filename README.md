@@ -67,3 +67,13 @@
     * https://chinese.freecodecamp.org/news/structuring-a-flask-restplus-web-service-for-production-builds/
 
 ---
+
+<h3>V0.3.2</h3>
+
+* Note:
+  * API:
+    * /user/register
+    * /user/<int: id> (GET, PUT, DELETE) 
+  * Users model add func
+    * Set password
+    * Check password
