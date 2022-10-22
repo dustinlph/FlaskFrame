@@ -33,8 +33,9 @@ class RegisterDto:
         "username": fields.String(example="Doe")
     })
 
+
 class UserDto:
-    user_api = Namespace('user', description="This is a desc. of user", path='/')
+    user_api = Namespace('user', path='/')
     user_put_request = user_api.model('user_request', {
         "username": fields.String(required=False, description="name you want to change", example="Doe"),
         "email": fields.String(required=False, description="enter the new email", example="demo@demo.demo")
@@ -42,4 +43,30 @@ class UserDto:
     user_get_response = user_api.model('user_response', {
         "id": fields.Integer(),
         "username": fields.String()
+    })
+
+
+class DataDto:
+    data_api = Namespace('user', path='/')
+    data_post_request = data_api.model('data_request', {
+        "title": fields.String(required=True, description="Enter title", example="Title"),
+        "info": fields.String(required=True, description="Enter info", example="The data info..."),
+    })
+    data_put_request = data_api.model('data_request', {
+        "title": fields.String(required=False, description="Enter title", example="Title"),
+        "info": fields.String(required=False, description="Enter info", example="The data info..."),
+    })
+    data_get_response = data_api.model('data_get_response', {
+        "id": fields.Integer(),
+        "title": fields.String(example="Data title"),
+        "info": fields.String(example="Data info")
+    })
+    data_other_response = data_api.model("data_other_response", {
+         "message": fields.String(example="success")
+    })
+    data_post_response = data_api.model("data_post_response", {
+        "message": fields.String(example="success"),
+        "id": fields.Integer(),
+        "title": fields.String(example="Data title"),
+        "info": fields.String(example="Data info")
     })
