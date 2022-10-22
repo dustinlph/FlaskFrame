@@ -9,9 +9,11 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
+from flask_mail import Mail
 
 db = SQLAlchemy()
 jwt = JWTManager()
+mail = Mail()
 
 from .config import config_options
 from app.model.users import Users as UsersModel
@@ -24,6 +26,7 @@ def create_app(config_name):
 	db.init_app(app)
 	migrate = Migrate(app, db)
 	jwt.init_app(app)
+	mail.init_app(app)
 	app.register_blueprint(api_blueprint)
 
 	return app

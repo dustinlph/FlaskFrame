@@ -103,3 +103,20 @@
         * Need jwt verify, Only can delete your account info
     * Update /user/register
       * email required.
+
+---
+
+<h3>V0.4.0</h3>
+
+* Note:
+  * Add util/mail
+  * Add mail function
+  * Update /user/register
+    * Add send welcome mail function
+  * Installed:
+    * pip install Flask-Mail
+  * Ref.
+    * Gmail settings
+      * https://ithelp.ithome.com.tw/articles/10270981?sc=iThomeR
+    * Flask_Mail:
+      * https://hackmd.io/@shaoeChen/BytvGKs4M?type=view

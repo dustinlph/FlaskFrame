@@ -8,9 +8,9 @@
 from flask import abort
 from flask_restx import Resource
 
-from app import db
 from app.util.dto import RegisterDto
 from app.model.users import Users as UsersModel
+from app.util.mail import send_welcome_email
 
 register_api = RegisterDto.register_api
 _register_request = RegisterDto.register_request
@@ -32,7 +32,8 @@ class Register(Resource):
 		if len(missing_key) != 0:
 			abort(417, f"missing something: {missing_key}")
 
-		user = UsersModel(username=data["username"])
+		user = UsersModel(username=data["username"], email=data["email"])
 		user.set_password(data["password"])
 		user.add()
+		send_welcome_email(data["email"])
 		return {"message": "Success", "username": data["username"]}, 201

@@ -10,7 +10,7 @@ from datetime import timedelta
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 env = os.environ.get('Demo_app_config')
-api_version = '0.0.2'
+api_version = '0.4.0'
 
 
 class Config(object):
@@ -19,6 +19,12 @@ class Config(object):
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=30)
     JWT_TOKEN_LOCATION = ['headers', 'query_string']
     DEBUG = False
+    MAIL_SERVER = 'smtp.gmail.com'
+    MAIL_PROT = 587
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = "serversitehandler@gmail.com"
+    MAIL_PASSWORD = "your-email-password"
+    MAIL_DEFAULT_SENDER = MAIL_USERNAME
 
 
 class DevConfig(Config):
